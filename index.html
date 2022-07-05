@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blacksmith</title>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <div class="main-container">
+        <h1>Blacksmithing</h1>
+        <p id="currency-text">$ <span id="currency-text-value">0</span></p>
+        <p id="ore-text">Ore: <span id="ore-text-value">0</span> <span id="timer"></span></p>
+        <p id="ingot-text">Ingots: <span id="ingot-text-value">0</span></p>
+        <p id="sword-text">Sword: <span id="sword-text-value">0</span></p>
+
+        <div class="craft-button-box">
+            <input type="button" id="mine-btn" value="Mine">
+            <input type="button" id="forge-ingot-btn" value="Forge Ingot">
+            <input type="button" id="craft-sword-btn" value="Craft a Sword">
+        </div>
+        <div class="sell-btn-box">
+            <br/>
+            <input type="button" id="sell-ore-btn" value="Sell Ore">
+            <input type="button" id="sell-ingot-btn" value="Sell Ingot">
+            <input type="button" id="sell-sword-btn" value="Sell Sword">
+        </div>
+        <p id="error-text"></p>
+        <br/>
+        <br/>
+        <div class="shop-box">
+            <h4>Ye Olde Shop</h4>
+            <p><i>Purchases will persist until the page is reloaded.</i></p>
+            <p>$500 Automated Mining <input type="button" id="buy-automining-btn" value="Purchase"><span id="shop-am-error-text"></span></p>
+            <p>$1000 Automated Smelting <input type="button" id="buy-autosmelting-btn" value="Purchase"></p>
+            
+        </div>
+    </div>
+    
+
+
+
+    
+    <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
