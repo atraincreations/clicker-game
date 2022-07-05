@@ -81,8 +81,8 @@ function ingotCooldown(){
 }
 
 function swordCooldown(){
-    $('craft-sword-btn').prop('disabled', false);
-    $('craft-sword-btn').val('Craft a Sword');
+    $('#craft-sword-btn').prop('disabled', false);
+    $('#craft-sword-btn').val('Craft a Sword');
     stats.sword = stats.sword + 1;
     updateStatsView();
 }
