@@ -4,31 +4,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blacksmith</title>
+    <title>Automation Clicker Game</title>
     <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
-    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="main-container">
-        <h1>Blacksmithing</h1>
+        <h1>Idle Automation</h1>
         <p id="currency-text">$ <span id="currency-text-value">0</span></p>
-        <p id="ore-text">Ore: <span id="ore-text-value">0</span> <span id="timer"></span></p>
-        <p id="ingot-text">Ingots: <span id="ingot-text-value">0</span></p>
-        <p id="sword-text">Sword: <span id="sword-text-value">0</span></p>
-
-        <div class="craft-button-box">
-            <input type="button" id="mine-btn" value="Mine">
-            <input type="button" id="forge-ingot-btn" value="Forge Ingot">
-            <input type="button" id="craft-sword-btn" value="Craft a Sword">
-        </div>
+        <table>
+            <tr>
+                <td><input type="button" id="mine-btn" value="Mine"></td>
+                <td>Iron Ore:</td>
+                <td id="ore-text-value"></td>
+                
+            </tr>
+            <tr>
+                <td><input type="button" id="forge-ingot-btn" value="Forge Ingot"></td>
+                <td>Iron Ingots:</td>
+                <td id="ingot-text-value"></td>
+            </tr>
+            <tr>
+                <td><input type="button" id="craft-sword-btn" value="Craft Iron Sword"></td>
+                <td>Iron Sword:</td>
+                <td id="sword-text-value"></td>
+            </tr>
+            <tr>
+                <td><input type="button" id="smelt-rod-btn" value="Smelt Iron Rod"></td>
+                <td>Iron Rod:</td>
+                <td id="rod-text-value"></td>
+            </tr>
+            <tr>
+                <td><input type="button" id="craft-gear-btn" value="Craft Iron Gear"></td>
+                <td>Iron Gear:</td>
+                <td id="gear-text-value"></td>
+            </tr>
+        </table>
+        <br/>
+        
         <div class="sell-btn-box">
             <br/>
-            <input type="button" id="sell-ore-btn" value="Sell Ore">
-            <input type="button" id="sell-ingot-btn" value="Sell Ingot">
-            <input type="button" id="sell-sword-btn" value="Sell Sword">
+            <h4>Sell</h4>
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td><input type="button" id="sell-ore-btn" value="Iron Ore"></td>
+                    <td id="iron-ore-value-text"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" id="sell-ingot-btn" value="Iron Ingot"></td>
+                    <td id="iron-ingot-value-text"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" id="sell-sword-btn" value="Iron Sword"></td>
+                    <td id="iron-sword-value-text"></td>
+                </tr>
+            </table>
         </div>
         <p id="error-text"></p>
         <br/>
@@ -36,9 +73,10 @@
         <div class="shop-box">
             <h4>Ye Olde Shop</h4>
             <p><i>Purchases will persist until the page is reloaded.</i></p>
-            <p>$500 Automated Mining <input type="button" id="buy-automining-btn" value="Purchase"><span id="shop-am-error-text"></span></p>
+            <p>$500 Automated Mining <input type="button" id="buy-automining-btn" value="Under Development" disabled><span id="shop-am-error-text"></span></p>
             <p>$1000 Automated Smelting <input type="button" id="buy-autosmelting-btn" value="Under Development" disabled></p>
-            
+            <p>Upgrade your pickaxe with <span id="upgrade-rod-amount-text"></span> rods and <span id="upgrade-gear-amount-text"></span> gears
+            <input type="button" id="upgrade-ore-per-swing-btn" value="Under Development" disabled><span id="shop-upgrade-error-text"></span></p>
         </div>
     </div>
     
