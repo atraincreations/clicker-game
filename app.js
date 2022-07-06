@@ -6,21 +6,23 @@ let stats = {
     sword: 0,
     automining: false,
     hasPurchasedMining: false,
+    autosmelting: false,
+    hasPurchasedSmelting: false,
 };
 
 let materialsNeeded = {
     ingot: 10,
-    sword: 5,
+    sword: 3,
 }
 
 let materialsValue = {
-    oreValue: 1,
-    ingotValue: 10,
-    swordValue: 25,
+    oreValue: .5,
+    ingotValue: 7,
+    swordValue: 35,
 }
 
 let shopPrices = {
-    auotminingPrice: 500,
+    autominingPrice: 500,
     autosmeltingPrice: 1000,
 }
 
@@ -87,6 +89,15 @@ function swordCooldown(){
     updateStatsView();
 }
 
+// easter eggs
+if(stats.currency == 69){
+    $('h1').append("( . )( . )");
+}
+
+if(stats.currency == 420){
+    $('h1').append("&#129462;");
+}
+
 
 // onclick handlers
 
@@ -145,8 +156,8 @@ $('#sell-sword-btn').on("click", function(){
 
 // Shop buttons
 $('#buy-automining-btn').on("click", function(){
-    if(stats.currency > shopPrices.auotminingPrice){
-        stats.currency = stats.currency - shopPrices.automining;
+    if(stats.currency >= shopPrices.autominingPrice){
+        stats.currency = stats.currency - shopPrices.autominingPrice;
         stats.hasPurchasedMining = true;
         updateStatsView();
     } else {
