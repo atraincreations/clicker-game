@@ -10,39 +10,33 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <script defer type="text/javascript" src="./app.js"></script>
 </head>
 <body>
     <div class="main-container">
         <h1>Idle Automation</h1>
         <p id="currency-text">$ <span id="currency-text-value">0</span></p>
-        <table>
-            <tr>
-                <td><input type="button" id="mine-btn" value="Mine"></td>
-                <td>Iron Ore:</td>
-                <td id="ore-text-value"></td>
-                
-            </tr>
-            <tr>
-                <td><input type="button" id="forge-ingot-btn" value="Forge Ingot"></td>
-                <td>Iron Ingots:</td>
-                <td id="ingot-text-value"></td>
-            </tr>
-            <tr>
-                <td><input type="button" id="craft-sword-btn" value="Craft Iron Sword"></td>
-                <td>Iron Sword:</td>
-                <td id="sword-text-value"></td>
-            </tr>
-            <tr>
-                <td><input type="button" id="smelt-rod-btn" value="Smelt Iron Rod"></td>
-                <td>Iron Rod:</td>
-                <td id="rod-text-value"></td>
-            </tr>
-            <tr>
-                <td><input type="button" id="craft-gear-btn" value="Craft Iron Gear"></td>
-                <td>Iron Gear:</td>
-                <td id="gear-text-value"></td>
-            </tr>
-        </table>
+        <div id="get-resource-box"> 
+            <button id="mine-btn">Mine</button>
+            <p>Iron Ore:</p>
+            <p id="ore-text-value"></p>
+
+            <button id="forge-ingot-btn">Forge Ingot</button>
+            <p>Iron Ingots:</p>
+            <p id="ingot-text-value"></p>
+
+            <button id="craft-sword-btn">Craft Iron Sword</button>
+            <p>Iron Sword:</p>
+            <p id="sword-text-value"></p>
+
+            <button id="smelt-rod-btn">Smelt Iron Rod</button>
+            <p>Iron Rod:</p>
+            <p id="rod-text-value"></p>
+
+            <button id="craft-gear-btn">Craft Iron Gear</button>
+            <p>Iron Gear:</p>
+            <p id="gear-text-value"></p>
+        </div>
         <br/>
         
         <div class="sell-btn-box">
@@ -79,11 +73,5 @@
             <input type="button" id="upgrade-ore-per-swing-btn" value="Under Development" disabled><span id="shop-upgrade-error-text"></span></p>
         </div>
     </div>
-    
-
-
-
-    
-    <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
