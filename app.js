@@ -76,9 +76,9 @@ function updateStatsView() {
     $('#upgrade-gear-amount-text').text(materialsNeeded.ironGear);
     $('#gear-text-value').text(stats.ironGear);
     if(stats.hasPurchasedMining === true){
-        $('#buy-automining-btn').val('Purchased')
+        $('#buy-automining-btn').text('Purchased')
         $('#buy-automining-btn').prop('disabled', true);
-        $('#mine-btn').val('Mining..');
+        $('#mine-btn').text('Mining..');
         $('#mine-btn').prop('disabled', true);
         setTimeout('autoMine()', 2500);
     }
@@ -94,35 +94,35 @@ function clearErrorText() {
  //Cooldown functions
 function miningCooldown(){
     $('#mine-btn').prop('disabled', false);
-    $('#mine-btn').val('Mine');
+    $('#mine-btn').text('Mine');
     stats.ore = stats.ore + stats.orePerSwing;
     updateStatsView();
 }
 
 function ingotCooldown(){
     $('#forge-ingot-btn').prop('disabled', false);
-    $('#forge-ingot-btn').val('Forge Ingot');
+    $('#forge-ingot-btn').text('Forge Ingot');
     stats.ingot = stats.ingot + 1;
     updateStatsView();
 }
 
 function swordCooldown(){
     $('#craft-sword-btn').prop('disabled', false);
-    $('#craft-sword-btn').val('Craft a Sword');
+    $('#craft-sword-btn').text('Craft a Sword');
     stats.sword = stats.sword + 1;
     updateStatsView();
 }
 
 function rodCooldown(){
     $('#smelt-rod-btn').prop('disabled', false);
-    $('#smelt-rod-btn').val('Smelt Iron Rod');
+    $('#smelt-rod-btn').text('Smelt Iron Rod');
     stats.ironRod = stats.ironRod + 1;
     updateStatsView();
 }
 
 function gearCooldown(){
     $('#craft-gear-btn').prop('disabled', false);
-    $('#craft-gear-btn').val('Craft Iron Gear');
+    $('#craft-gear-btn').text('Craft Iron Gear');
     stats.ironGear = stats.ironGear + 1;
     updateStatsView();
 }
@@ -141,7 +141,7 @@ if(stats.currency == 420){
 
 $('#mine-btn').on("click", function(){
     clearErrorText();
-    $('#mine-btn').val('Mining..');
+    $('#mine-btn').text('Mining..');
     $('#mine-btn').prop('disabled', true);
     setTimeout('miningCooldown()', 1200);
 
@@ -150,7 +150,7 @@ $('#mine-btn').on("click", function(){
 $('#forge-ingot-btn').on("click", function(){
     clearErrorText();
     if(stats.ore >= materialsNeeded.ingot){
-        $('#forge-ingot-btn').val('Forging..');
+        $('#forge-ingot-btn').text('Forging..');
         $('#forge-ingot-btn').prop('disabled', true);
         stats.ore = stats.ore - materialsNeeded.ingot;
         updateStatsView();
@@ -164,7 +164,7 @@ $('#craft-sword-btn').on("click", function(){
     clearErrorText();
     if(stats.ingot >= materialsNeeded.sword){
         stats.ingot = stats.ingot - materialsNeeded.sword;
-        $('#craft-sword-btn').val('Crafting..');
+        $('#craft-sword-btn').text('Crafting..');
         $('#craft-sword-btn').prop('disabled', true);
         updateStatsView();
         setTimeout('swordCooldown()', 30000);
@@ -177,7 +177,7 @@ $('#smelt-rod-btn').on("click", function(){
     clearErrorText();
     if(stats.ore >= materialsNeeded.craftIronRod){
         stats.ore = stats.ore - materialsNeeded.craftIronRod;
-        $('#smelt-rod-btn').val('Smelting..');
+        $('#smelt-rod-btn').text('Smelting..');
         $('#smelt-rod-btn').prop('disabled', true);
         updateStatsView();
         setTimeout('rodCooldown()', 15000);
@@ -190,7 +190,7 @@ $('#craft-gear-btn').on("click", function(){
     clearErrorText();
     if(stats.ingot >= materialsNeeded.craftIronGear){
         stats.ingot = stats.ingot - materialsNeeded.craftIronGear;
-        $('#craft-gear-btn').val('Crafting..');
+        $('#craft-gear-btn').text('Crafting..');
         $('#craft-gear-btn').prop('disabled', true);
         updateStatsView();
         setTimeout('gearCooldown()', 7000);
