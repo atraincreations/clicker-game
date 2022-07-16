@@ -11,6 +11,9 @@ let stats = {
     hasPurchasedMining: false,
     autosmelting: false,
     hasPurchasedSmelting: false,
+    mineCount: 0,
+    isCopperUnlocked: false,
+    isTitaniumUnlocked: false,
 };
 
 let materialsNeeded = {
@@ -30,9 +33,13 @@ let materialsValue = {
 
 let shopPrices = {
     autominingPrice: 500,
-    autosmeltingPrice: 1000,
+    autoSmeltingPrice: 1000,
 }
 
+let gameUnlocks = {
+    copperOreUnlock: 5000,
+    titaniumOreUnlock: 35000,
+}
 
 
 $(window).on('load', function(){
@@ -61,6 +68,10 @@ $(window).on('load', function(){
 function autoMine(){
     stats.ore = stats.ore + stats.orePerSwing;
     updateStatsView();
+}
+
+function isUnlocked(){
+
 }
 
 function updateStatsView() {
@@ -96,6 +107,8 @@ function miningCooldown(){
     $('#mine-btn').prop('disabled', false);
     $('#mine-btn').val('Mine');
     stats.ore = stats.ore + stats.orePerSwing;
+    stats.mineCount = stats.mineCount + 1;
+    console.log(stats.mineCount);
     updateStatsView();
 }
 
