@@ -304,7 +304,7 @@ $('#buy-automining-btn').on("click", function(){
 //bugged with automining it incriments rapidly
 $('#upgrade-ore-per-swing-btn').on("click", function(){
     if(stats.ironGear >= materialsNeeded.ironGear && stats.ironRod >= materialsNeeded.ironRod){
-        stats.orePerSwing = stats.orePerSwing + 1;
+        stats.orePerSwing = stats.orePerSwing + .25;
         stats.ironGear = stats.ironGear - materialsNeeded.ironGear;
         stats.ironRod = stats.ironRod - materialsNeeded.ironRod;
         materialsNeeded.ironGear = materialsNeeded.ironGear * (Math.floor(Math.random() * 5) + 2);
