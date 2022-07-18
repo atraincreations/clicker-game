@@ -125,6 +125,8 @@ function updateStatsView() {
     $('#rod-text-value').text(stats.ironRod);
     $('#upgrade-gear-amount-text').text(materialsNeeded.ironGear);
     $('#gear-text-value').text(stats.ironGear);
+    $('#auto-mine-pricing-text').text('$'+shopPrices.autominingPrice);
+    $('#auto-smelt-price-text').text('$'+shopPrices.autoSmeltingPrice);
     if(stats.hasPurchasedMining === true){
         $('#buy-automining-btn').val('Purchased')
         $('#buy-automining-btn').prop('disabled', true);
