@@ -2,12 +2,13 @@
 let stats = {
     currency: 0,
     ore: 0,
+    copperOre: 0,
+    titOre: 0,
     ingot: 0,
     sword: 0,
     ironRod: 0,
     ironGear: 0,
     orePerSwing: 1,
-    automining: false,
     hasPurchasedMining: false,
     autosmelting: false,
     hasPurchasedSmelting: false,
@@ -27,6 +28,8 @@ let materialsNeeded = {
 
 let materialsValue = {
     oreValue: .5,
+    copperValue: 2,
+    titValue: 15,
     ingotValue: 7,
     swordValue: 35,
 }
@@ -47,36 +50,72 @@ $(window).on('load', function(){
     if(myStats){
         stats.currency = myStats.currency;
         stats.ore = myStats.ore;
+        stats.copperOre = myStats.copperOre;
+        stats.mineCount = myStats.mineCount;
         stats.ingot = myStats.ingot;
         stats.sword = myStats.sword;
         stats.ironRod = myStats.ironRod;
         stats.ironGear = myStats.ironGear;
         stats.orePerSwing = myStats.orePerSwing;
-        stats.automining = myStats.automining;
         stats.hasPurchasedMining = myStats.hasPurchasedMining;
-        updateStatsView();
     }
     let myMaterialsNeeded = JSON.parse(localStorage.getItem("myMaterialsNeeded"));
     if(myMaterialsNeeded){
         materialsNeeded.ironGear = myMaterialsNeeded.ironGear;
         materialsNeeded.ironRod = myMaterialsNeeded.ironRod;
-        updateStatsView();
     }
+    updateStatsView();
 })
 
 
 function autoMine(){
+    $('#mine-btn').val('Mining..');
+    $('#mine-btn').prop('disabled', true);
     stats.ore = stats.ore + stats.orePerSwing;
-    updateStatsView();
+    stats.mineCount = stats.mineCount + 1;
+    setTimeout('updateStatsView()', 2500);
 }
 
 function isUnlocked(){
+    if(stats.isCopperUnlocked === true){
+        $('#workshop-table').append('<tr><td><input type="button" id="mine-copper-ore" value="Mine"></td><td>Copper Ore:</td><td id="copper-ore-text-value"></td></tr>');
+        $('#shop-table').append('<td><input type="button" id="sell-copper-ore-btn" value="Copper Ore"></td><td id="copper-ore-value-text"></td>');
+        $('#copper-ore-text-value').text(stats.copperOre);
+        $('#copper-ore-value-text').text("$ " +materialsValue.copperValue);
 
+        $('#mine-copper-ore').on("click", function(){
+            clearErrorText();
+            $('#mine-copper-ore').val('Mining..');
+            $('#mine-copper-ore').prop('disabled', true);
+            setTimeout('copperCooldown()', 500);
+        })
+
+        $('#sell-copper-ore-btn').on("click", function(){
+            stats.currency = stats.currency + (stats.copperOre * materialsValue.copperValue);
+            stats.copperOre = 0;
+            $('#copper-ore-text-value').text(stats.copperOre);
+        })
+    }
+    if(stats.isTitaniumUnlocked === true){
+        $('#workshop-table').append('<tr><td><input type="button" id="mine-tit-ore" value="Mine"></td><td>Titanium Ore:</td><td id="tit-ore-text-value"></td></tr>');
+        $('#shop-table').append('<td><input type="button" id="sell-tit-ore-btn" value="Titanium Ore"></td><td id="tit-ore-value-text"></td>');
+        $('#tit-ore-text-value').text(stats.titOre);
+        $('#tit-ore-value-text').text("$ " +materialsValue.titValue);
+
+        $('#mine-tit-ore').on("click", function(){
+            clearErrorText();
+            $('#mine-tit-ore').val('Mining..');
+            $('#mine-tit-ore').prop('disabled', true);
+            setTimeout('titCooldown()', 10000);
+        })
+    }
 }
 
 function updateStatsView() {
     $('#currency-text-value').text(stats.currency);
     $('#ore-text-value').text(stats.ore);
+    $('#copper-ore-text-value').text(stats.copperOre);
+    $('#tit-ore-text-value').text(stats.titOre);
     $('#ingot-text-value').text(stats.ingot);
     $('#sword-text-value').text(stats.sword);
     $('#iron-ore-value-text').text("$ "+materialsValue.oreValue);
@@ -89,9 +128,10 @@ function updateStatsView() {
     if(stats.hasPurchasedMining === true){
         $('#buy-automining-btn').val('Purchased')
         $('#buy-automining-btn').prop('disabled', true);
-        $('#mine-btn').val('Mining..');
-        $('#mine-btn').prop('disabled', true);
         setTimeout('autoMine()', 2500);
+    }
+    if($('#copper-ore-text-value').length === 0){
+        isUnlocked();
     }
     localStorage.setItem("myStats", JSON.stringify(stats)); //store stats
     localStorage.setItem("myMaterialsNeeded", JSON.stringify(materialsNeeded)); //store materials
@@ -109,6 +149,22 @@ function miningCooldown(){
     stats.ore = stats.ore + stats.orePerSwing;
     stats.mineCount = stats.mineCount + 1;
     console.log(stats.mineCount);
+    updateStatsView();
+}
+
+function copperCooldown(){
+    $('#mine-copper-ore').prop('disabled', false);
+    $('#mine-copper-ore').val('Mine');
+    stats.copperOre = stats.copperOre + stats.orePerSwing;
+    stats.mineCount = stats.mineCount + 1;
+    updateStatsView();
+}
+
+function titCooldown(){
+    $('#mine-tit-ore').prop('disabled', false);
+    $('#mine-tit-ore').val('Mine');
+    stats.titOre = stats.titOre + stats.orePerSwing;
+    stats.mineCount = stats.mineCount + 1;
     updateStatsView();
 }
 
@@ -157,8 +213,8 @@ $('#mine-btn').on("click", function(){
     $('#mine-btn').val('Mining..');
     $('#mine-btn').prop('disabled', true);
     setTimeout('miningCooldown()', 1200);
-
 })
+
 
 $('#forge-ingot-btn').on("click", function(){
     clearErrorText();
@@ -253,7 +309,11 @@ $('#upgrade-ore-per-swing-btn').on("click", function(){
         stats.ironRod = stats.ironRod - materialsNeeded.ironRod;
         materialsNeeded.ironGear = materialsNeeded.ironGear * (Math.floor(Math.random() * 5) + 2);
         materialsNeeded.ironRod = materialsNeeded.ironRod * (Math.floor(Math.random() * 4) + 2);
-        updateStatsView();
+        $('#ore-text-value').text(stats.ore);
+        $('#upgrade-rod-amount-text').text(materialsNeeded.ironRod);
+        $('#rod-text-value').text(stats.ironRod);
+        $('#upgrade-gear-amount-text').text(materialsNeeded.ironGear);
+        $('#gear-text-value').text(stats.ironGear);
     } else {
         $('#shop-upgrade-error-text').text(" Insufficient materials.")
     }

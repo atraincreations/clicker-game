@@ -48,7 +48,7 @@
         <div class="sell-btn-box">
             <br/>
             <h4>Sell</h4>
-            <table>
+            <table id="shop-table">
                 <tr>
                     <th>Item</th>
                     <th>Price</th>
@@ -73,10 +73,10 @@
         <div class="shop-box">
             <h4>Ye Olde Shop</h4>
             <p><i>Purchases should persist even if the page is reloaded.</i></p>
-            <p>$500 Automated Mining <i>Under Development</i> <input type="button" id="buy-automining-btn" value="Purchase"><span id="shop-am-error-text"></span></p>
+            <p>$500 Automated Mining <input type="button" id="buy-automining-btn" value="Purchase"><span id="shop-am-error-text"></span></p>
             <p>$1000 Automated Smelting <input type="button" id="buy-autosmelting-btn" value="Under Development" disabled></p>
             <p>Upgrade your pickaxe with <span id="upgrade-rod-amount-text"></span> rods and <span id="upgrade-gear-amount-text"></span> gears
-            <input type="button" id="upgrade-ore-per-swing-btn" value="Under Development" disabled><span id="shop-upgrade-error-text"></span></p>
+            <input type="button" id="upgrade-ore-per-swing-btn" value="Purchase" ><span id="shop-upgrade-error-text"></span></p>
         </div>
     </div>
     
@@ -85,6 +85,6 @@
 
     
     <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="store.js"></script>
+
 </body>
 </html>
