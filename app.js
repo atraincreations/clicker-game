@@ -27,20 +27,20 @@ let materialsNeeded = {
 }
 
 let materialsValue = {
-    oreValue: .5,
-    copperValue: 2,
+    oreValue: .25,
+    copperValue: 1,
     titValue: 15,
-    ingotValue: 7,
-    swordValue: 35,
+    ingotValue: 5,
+    swordValue: 20,
 }
 
 let shopPrices = {
-    autominingPrice: 500,
-    autoSmeltingPrice: 1000,
+    autominingPrice: 5000,
+    autoSmeltingPrice: 10000,
 }
 
 let gameUnlocks = {
-    copperOreUnlock: 5000,
+    copperOreUnlock: 15000,
     titaniumOreUnlock: 35000,
 }
 
@@ -73,7 +73,7 @@ function autoMine(){
     $('#mine-btn').prop('disabled', true);
     stats.ore = stats.ore + stats.orePerSwing;
     stats.mineCount = stats.mineCount + 1;
-    setTimeout('updateStatsView()', 2500);
+    setTimeout('updateStatsView()', 10000);
 }
 
 function isUnlocked(){
@@ -128,7 +128,7 @@ function updateStatsView() {
     if(stats.hasPurchasedMining === true){
         $('#buy-automining-btn').val('Purchased')
         $('#buy-automining-btn').prop('disabled', true);
-        setTimeout('autoMine()', 2500);
+        setTimeout('autoMine()', 10000);
     }
     if($('#copper-ore-text-value').length === 0){
         isUnlocked();
